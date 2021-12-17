@@ -1,1 +1,3 @@
-# cours_vuex4-firebase_auth
+# Cours vuex4 & firebase auth
+
+Utiliser Vuex pour gérer l'état d'authentification globale avec Firebase auth.
