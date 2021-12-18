@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  // import
+
 import {ref} from 'vue'
 
 export default {
