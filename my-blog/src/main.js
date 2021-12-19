@@ -4,4 +4,6 @@ import router from './router'
 
 import './assets/index.css'
 
-createApp(App).use(router).mount('#app')
+import store from './store/index'
+
+createApp(App).use(router).use(store).mount('#app')
