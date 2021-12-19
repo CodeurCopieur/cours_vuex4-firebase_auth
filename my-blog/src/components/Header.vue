@@ -12,7 +12,7 @@
         </div>
         <!-- logged out -->
         <div>
-          <router-link to='/home' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+          <router-link to='/' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
           <router-link to='/login' class="mr-5 font-medium  hover:text-gray-900">Login</router-link>
           <router-link to='/signup' class="mr-5 font-medium  hover:text-gray-900">Signup</router-link>
         </div>
