@@ -1,5 +1,12 @@
 <template>
   <section class="text-gray-600 body-font">
+
+    <div class="container py-1 mx-auto">
+      <span>{{ points }}</span>
+      <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" @click="updatePoints(1)">add a point</button>
+      <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" @click="updatePoints(-1)">remove a point</button>
+    </div>
+      
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap -m-4">
 
@@ -51,6 +58,16 @@ export default {
     ])
     return { 
       blogs
+    }
+  },
+  methods: {
+    updatePoints(points) {
+      this.$store.commit('updatedPoints', points)
+    },
+  },
+  computed: {
+    points() {
+      return this.$store.state.points
     }
   }
 }
