@@ -46,7 +46,8 @@
 
 <script>
 
-import {ref} from 'vue'
+import {ref, computed} from 'vue'
+import {useStore} from 'vuex'
 
 export default {
   name:'Home',
@@ -56,11 +57,22 @@ export default {
       { title: '...Then I Took an Arrow in the Knee', id: 2 },
       { title: 'Mario vs Luigi, Ultimate Showdown', id: 3 },
     ])
+
+    const store = useStore()
+
+    const points = computed(()=> store.state.points)
+
+    const updatePoints = (points) => {
+      store.commit('updatedPoints', points)
+    }
+
     return { 
-      blogs
+      blogs,
+      points,
+      updatePoints
     }
   },
-  methods: {
+  /*methods: {
     updatePoints(points) {
       this.$store.commit('updatedPoints', points)
     },
@@ -69,6 +81,6 @@ export default {
     points() {
       return this.$store.state.points
     }
-  }
+  }*/
 }
 </script>
