@@ -52,6 +52,7 @@
 <script>
 
 import {ref} from 'vue'
+import {useStore} from 'vuex'
 
 export default {
   name:'Signup',
@@ -59,11 +60,13 @@ export default {
     const email = ref('')
     const password = ref('')
 
-    const handleSubmit = ()=> {
-      console.log(email.value, password.value)
+    const store = useStore()
+
+    const handleSubmit = () => {
+       store.dispatch('signup', { email: email.value, password: password.value })
     }
 
-    return { handleSubmit, email,  password, }
+    return { handleSubmit, email,  password }
   }
   }
 </script>

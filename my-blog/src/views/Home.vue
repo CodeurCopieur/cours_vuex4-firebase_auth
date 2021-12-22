@@ -1,11 +1,5 @@
 <template>
   <section class="text-gray-600 body-font">
-
-    <div class="container py-1 mx-auto hidden">
-      <span>{{ points }}</span>
-      <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" @click="updatePoints(1)">add a point</button>
-      <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg" @click="updatePoints(-1)">remove a point</button>
-    </div>
       
     <div class="container px-5 py-24 mx-auto">
       <div class="flex flex-wrap -m-4">
@@ -61,29 +55,10 @@ export default {
     const store = useStore()
 
     console.log(store.state.user);
-    store.commit('setUser', 'user1')
-
-    //const points = computed(()=> store.state.points)
-
-    /*const updatePoints = (points) => {
-      store.commit('updatedPoints', points)
-    }*/
 
     return { 
-      blogs,
-      //points,
-      //updatePoints
+      blogs
     }
   },
-  /*methods: {
-    updatePoints(points) {
-      this.$store.commit('updatedPoints', points)
-    },
-  },
-  computed: {
-    points() {
-      return this.$store.state.points
-    }
-  }*/
 }
 </script>
