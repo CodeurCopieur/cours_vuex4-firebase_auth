@@ -1,5 +1,7 @@
 ## Setup Tailwind in a Vue 3
 
+> Vuex est une solution de gestion d'état pour Vue.js, qui permet d'accéder et de mettre à jour facilement l'état global partagé dans une application Vue. Apprendre à utiliser Vuex version 4 avec Firebase auth, pour fournir une authentification globale et un état utilisateur à un site Web Vue 3 (à l'aide de l'API de composition).
+
 - npm init vite
 - project name : ...
 - select a framework : ...
