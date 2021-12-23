@@ -44,6 +44,10 @@
             </div>
           </div>
 
+          <div v-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-6" role="alert">
+            <strong class="font-bold">{{ error }}</strong>
+          </div>
+
       </form>
     </div>
   </div>
@@ -52,6 +56,8 @@
 <script>
 
 import {ref} from 'vue'
+import {useStore} from 'vuex'
+import {useRouter} from 'vue-router'
 
 export default {
   name:'Login',
@@ -59,11 +65,25 @@ export default {
     const email = ref('')
     const password = ref('')
 
-    const handleSubmit = ()=> {
+    const store = useStore()
+    const router = useRouter()
+    const error = ref(null)
+
+    const handleSubmit = async () => {
       console.log(email.value, password.value)
+      try {
+        await store.dispatch('login', {
+          email: email.value, 
+          password: password.value 
+        })
+        router.push('/')
+
+      } catch (err) {
+        error.value = err.message
+      }
     }
 
-    return { handleSubmit, email,  password, }
+    return { handleSubmit, email,  password, error}
   }
   }
 </script>
