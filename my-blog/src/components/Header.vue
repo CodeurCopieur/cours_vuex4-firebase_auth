@@ -5,14 +5,17 @@
         <h1 class="ml-3 text-2xl">Vue Auth</h1>
       </router-link>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <!-- logged in -->
-        <div>
-          <span class="mr-5">loggin in as...</span>
+        <router-link to='/' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+        
+        <div v-if="user">
+          <!-- logged in -->
+          <span class="mr-5">loggin in as {{user.email}}</span>
           <button class="mr-5" @click="handleClick">Logout</button>
         </div>
-        <!-- logged out -->
-        <div>
-          <router-link to='/' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+        
+        
+        <div v-else>
+          <!-- logged out -->
           <router-link to='/login' class="mr-5 font-medium  hover:text-gray-900">Login</router-link>
           <router-link to='/signup' class="mr-5 font-medium  hover:text-gray-900">Signup</router-link>
         </div>
@@ -25,6 +28,7 @@
 <script>
 
 import {useStore} from 'vuex'
+import {computed} from 'vue';
 
 export default {
   name: 'Header',
@@ -35,7 +39,7 @@ export default {
       store.dispatch('logout')
     }
 
-    return {handleClick}
+    return {handleClick, user: computed(()=> store.state.user)}
   }
 }
 </script>

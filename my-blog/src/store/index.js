@@ -43,7 +43,7 @@ const store = createStore({
       console.log('logout action');
 
       await signOut(auth)
-      this.commit('setUser', auth)
+      this.commit('setUser', null)
     }
   }
 })
