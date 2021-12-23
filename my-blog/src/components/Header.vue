@@ -8,7 +8,7 @@
         <!-- logged in -->
         <div>
           <span class="mr-5">loggin in as...</span>
-          <button class="mr-5">Logout</button>
+          <button class="mr-5" @click="handleClick">Logout</button>
         </div>
         <!-- logged out -->
         <div>
@@ -23,7 +23,19 @@
 </template>
 
 <script>
+
+import {useStore} from 'vuex'
+
 export default {
-  name: 'Header'
+  name: 'Header',
+  setup() {
+    const store = useStore()
+
+    const handleClick = () => {
+      store.dispatch('logout')
+    }
+
+    return {handleClick}
+  }
 }
 </script>
