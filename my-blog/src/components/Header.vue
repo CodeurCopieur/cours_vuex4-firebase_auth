@@ -5,20 +5,23 @@
         <h1 class="ml-3 text-2xl">Vue Auth</h1>
       </router-link>
       <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-        <router-link to='/' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+        <template v-if="authIsReady">
+          <router-link to='/' class="mr-5 font-medium hover:text-gray-900">Home</router-link>
+          
+          <div v-if="user">
+            <!-- logged in -->
+            <span class="mr-5">loggin in as {{user.email}}</span>
+            <button class="mr-5" @click="handleClick">Logout</button>
+          </div>
+          
+          
+          <div v-else>
+            <!-- logged out -->
+            <router-link to='/login' class="mr-5 font-medium  hover:text-gray-900">Login</router-link>
+            <router-link to='/signup' class="mr-5 font-medium  hover:text-gray-900">Signup</router-link>
+          </div>
+        </template>
         
-        <div v-if="user">
-          <!-- logged in -->
-          <span class="mr-5">loggin in as {{user.email}}</span>
-          <button class="mr-5" @click="handleClick">Logout</button>
-        </div>
-        
-        
-        <div v-else>
-          <!-- logged out -->
-          <router-link to='/login' class="mr-5 font-medium  hover:text-gray-900">Login</router-link>
-          <router-link to='/signup' class="mr-5 font-medium  hover:text-gray-900">Signup</router-link>
-        </div>
         
       </nav>
     </div>
@@ -39,7 +42,11 @@ export default {
       store.dispatch('logout')
     }
 
-    return {handleClick, user: computed(()=> store.state.user)}
+    return {
+      handleClick, 
+      user: computed(()=> store.state.user), 
+      authIsReady: computed(()=> store.state.authIsReady)
+    }
   }
 }
 </script>
