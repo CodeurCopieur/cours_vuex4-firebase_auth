@@ -1,6 +1,7 @@
 <script setup >
   import { ref } from 'vue'
-  import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+  // import le fournisseur d'authentification google afin de ce connectez avec la fenetre
+  import { getAuth, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
   import { useRouter } from 'vue-router'
 
   const email = ref('');
@@ -21,9 +22,17 @@
       })
   }
 
-  // function creer son compte via son compte google
+  // ajoutons google auth
   const signInWithGoogle = ()=> {
-    
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(getAuth(), provider)
+      .then((result) => {
+        console.log(result.user);
+        router.push('/feed')
+      })
+      .catch( error => {
+        console.log(error);
+      })
   };
 </script>
 
@@ -69,12 +78,9 @@
                   Submit
                 </button>
 
-                <button class="shadow bg-orange-400 hover:bg-orange-500 text-white focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
+                <button @click="signInWithGoogle" class="shadow bg-orange-400 hover:bg-orange-500 text-white focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                   Sign In With Google
                 </button>
-              </div>
-              <div class="flex justify-center">
-                
               </div>
             </div>
          </form>
